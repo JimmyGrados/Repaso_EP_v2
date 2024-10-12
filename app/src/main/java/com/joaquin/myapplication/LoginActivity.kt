@@ -22,7 +22,7 @@ class LoginActivity{
                 val username = usernameEditText.text.toString()
                 val password = passwordEditText.text.toString()
 
-                if (username == "admin" && password == "1234") {
+                if (username == "admin@travelapp.com" && password == "admin123") {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

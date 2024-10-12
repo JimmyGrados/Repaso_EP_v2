@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PARCIALDAMDELGADO21100165"
         tools:targetApi="31">
         <activity
-            android:name=".SplashActivity$SplashActivity"
+            android:name=".LoginActivity$LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PARCIALDAMDELGADO21100165.NoActionBar">
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity$LoginActivity"
+            android:name=".SplashActivity$SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PARCIALDAMDELGADO21100165.NoActionBar">
