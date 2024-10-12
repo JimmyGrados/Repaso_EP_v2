@@ -4,39 +4,52 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.joaquin.myapplication.R
 import com.joaquin.myapplication.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View? {
+        // Inflate the layout for this fragment
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val btnCalcular: Button = view.findViewById(R.id.btnCalcular)
+        val etVuelo: EditText = view.findViewById(R.id.etVuelo)
+        val etAlojamiento: EditText = view.findViewById(R.id.etAlojamiento)
+        val etCantNoches: EditText = view.findViewById(R.id.etCantNoches)
+        val etComida: EditText = view.findViewById(R.id.etComida)
+        val ckTyC: CheckBox = view.findViewById(R.id.ckTyC)
+        val txtResult: TextView = view.findViewById(R.id.tvResult)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+        btnCalcular.setOnClickListener {
+            val agree = ckTyC.isChecked
+
+            val ctVuelo = etVuelo.text.toString().toDouble()
+            val ctAlojamiento = etAlojamiento.text.toString().toDouble()
+            val cantNoche = etCantNoches.text.toString().toDouble()
+            val ctComida = etComida.text.toString().toDouble()
+
+            val resultado = ctVuelo + (ctAlojamiento * cantNoche) + (ctComida * cantNoche)
+
+            txtResult.text = "$resultado USD"
         }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return view
     }
 }
